@@ -49,6 +49,8 @@ namespace Rrs.Types
             return child.GetInterfaces()
                 .Any(childInterface =>
                 {
+                    if (childInterface == parent) return true;
+
                     var currentInterface = childInterface.IsGenericType
                         ? childInterface.GetGenericTypeDefinition()
                         : childInterface;
