@@ -120,5 +120,27 @@ namespace Rrs.Types
             }
             return false;
         }
+
+        public static MethodInfo GetGenericMethod(this Type type, string name, params Type[] types)
+        {
+            return type.GetMethods().FirstOrDefault(m => m.Name == name && m.GetParameters().Select(p => p.ParameterType).SequenceEqual(types, new GenericParameterComparer()));
+        }
+
+        // not a good general solution, it serves the purpose here for now
+        class GenericParameterComparer : IEqualityComparer<Type>
+        {
+            public bool Equals(Type x, Type y)
+            {
+                if (x == y) return true;
+                if (x.IsGenericType && y.IsGenericType && x.GetGenericTypeDefinition() == y.GetGenericTypeDefinition()) return true;
+                if (x.BaseType.IsAssignableFrom(y)) return true;
+                return false;
+            }
+
+            public int GetHashCode(Type obj)
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
