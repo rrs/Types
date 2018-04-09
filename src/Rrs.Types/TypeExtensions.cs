@@ -38,7 +38,7 @@ namespace Rrs.Types
 
         public static IEnumerable<Type> ConcreteImplementationsOf(this Type type, Assembly assembly = null)
         {
-            assembly = assembly ?? Assembly.GetExecutingAssembly();
+            assembly = assembly ?? Assembly.GetCallingAssembly();
             return assembly.GetReferencedAssemblies()
                             .Select(Assembly.Load)
                             .SelectMany(a => a.GetTypes().Where(t => t.IsConcreteImplementation(type)))
