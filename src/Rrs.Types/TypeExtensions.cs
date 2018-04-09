@@ -36,11 +36,9 @@ namespace Rrs.Types
             return child.InheritsOrImplements(parent) && !child.IsAbstract;
         }
 
-        public static IEnumerable<Type> ConcreteImplementationsOf(this Type type, Assembly assembly = null)
+        public static IEnumerable<Type> ConcreteImplementationsOf(this Type type)
         {
-            assembly = assembly ?? Assembly.GetCallingAssembly();
-            return assembly.GetReferencedAssemblies()
-                            .Select(Assembly.Load)
+            return AppDomain.CurrentDomain.GetAssemblies()
                             .SelectMany(a => a.GetTypes().Where(t => t.IsConcreteImplementation(type)))
                             .ToList();
         }
