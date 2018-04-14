@@ -38,9 +38,7 @@ namespace Rrs.Types
 
         public static IEnumerable<Type> ConcreteImplementationsOf(this Type type)
         {
-            return AppDomain.CurrentDomain.GetAssemblies()
-                            .SelectMany(a => a.GetTypes().Where(t => t.IsConcreteImplementation(type)))
-                            .ToList();
+            return TypeCache.Types.Where(t => t.IsConcreteImplementation(type)).ToList();
         }
 
         private static bool HasAnyInterfaces(Type parent, Type child)
