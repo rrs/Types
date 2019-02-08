@@ -16,13 +16,6 @@ namespace Tests.Rrs.Types
         }
 
         [Fact]
-        public void TestConcreteTypeGeneratorGenericType()
-        {
-            DualGenericImplementation<DerivedClass> c = ConcreteTypeGenerator.Get<DualGenericImplementation<DerivedClass>>();
-            Assert.NotNull(c);
-        }
-
-        [Fact]
         public void TestIgnoreAbstract()
         {
             var isConcreteImplementation = typeof(BaseAbstractClass).IsConcreteImplementation(typeof(BaseAbstractClass));
@@ -103,14 +96,6 @@ namespace Tests.Rrs.Types
         }
 
         [Fact]
-        public void TestGenericImplementationOfGenericInterface()
-        {
-            var isConcreteImplementation = typeof(GenericImplementationOfGenericInterface<>).IsConcreteImplementation(typeof(IGenericInInterface<int>));
-
-            Assert.True(isConcreteImplementation);
-        }
-
-        [Fact]
         public void TestDualGenericInterfaceWithGenericImplementation()
         {
             var isConcreteImplementation = typeof(DualGenericImplementation<>).IsConcreteImplementation(typeof(IDualInterface<DerivedClass,DerivedClass>));
@@ -131,12 +116,28 @@ namespace Tests.Rrs.Types
 
         }
 
-        [Fact]
-        public void TestFindConcreteImplementationsOfDualInterface()
-        {
-            var types = typeof(IDualInterface<IGenericInterface<int>, int>).ConcreteImplementationsOf();
+        //[Fact]
+        //public void TestGenericImplementationOfGenericInterface()
+        //{
+        //    var isConcreteImplementation = typeof(GenericImplementationOfGenericInterface<>).IsConcreteImplementation(typeof(IGenericInInterface<int>));
 
-            Assert.Equal(typeof(DualGenericImplementation<int>), types.Single());
-        }
+        //    Assert.True(isConcreteImplementation);
+        //}
+
+        //[Fact]
+        //public void TestFindConcreteImplementationsOfDualInterface()
+        //{
+        //    var types = typeof(IDualInterface<IGenericInterface<int>, int>).ConcreteImplementationsOf();
+
+        //    Assert.Equal(typeof(DualGenericImplementation<int>), types.Single());
+        //}
+
+
+        //[Fact]
+        //public void TestConcreteTypeGeneratorGenericType()
+        //{
+        //    DualGenericImplementation<DerivedClass> c = ConcreteTypeGenerator.Get<DualGenericImplementation<DerivedClass>>();
+        //    Assert.NotNull(c);
+        //}
     }
 }
