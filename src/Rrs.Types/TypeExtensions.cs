@@ -9,6 +9,8 @@ namespace Rrs.Types
     {
         public static bool InheritsOrImplements(this Type child, Type parent)
         {
+            if (parent.IsAssignableFrom(child)) return true;
+
             parent = ResolveGenericTypeDefinition(parent);
 
             var currentChild = child.IsGenericType
@@ -47,6 +49,7 @@ namespace Rrs.Types
                 .Any(childInterface =>
                 {
                     if (childInterface == parent) return true;
+                    if (parent.IsAssignableFrom(childInterface)) return true;
 
                     var currentInterface = childInterface.IsGenericType
                         ? childInterface.GetGenericTypeDefinition()
@@ -64,7 +67,12 @@ namespace Rrs.Types
             return parent;
         }
 
-        public static IEnumerable<PropertyInfo> GetFlattenedProperties(this Type type, BindingFlags bindingFlags = BindingFlags.Default)
+        public static IEnumerable<PropertyInfo> GetFlattenedProperties(this Type type)
+        {
+            return type.GetFlattenedProperties(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public);
+        }
+
+        public static IEnumerable<PropertyInfo> GetFlattenedProperties(this Type type, BindingFlags bindingFlags)
         {
             if (!type.IsInterface)
                 return type.GetProperties(bindingFlags);

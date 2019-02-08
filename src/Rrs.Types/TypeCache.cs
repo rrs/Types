@@ -10,13 +10,13 @@ namespace Rrs.Types
 
         static TypeCache()
         {
-            CacheLoadedTypes();
+            CacheLoadedAssemblyTypes();
         }
 
         /// <summary>
         /// Use in case all types available where not loaded
         /// </summary>
-        public static void CacheLoadedTypes()
+        public static void CacheLoadedAssemblyTypes()
         {
             Types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).ToList();
         }

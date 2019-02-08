@@ -5,6 +5,19 @@ using System.Linq.Expressions;
 
 namespace Rrs.Types
 {
+    public static class ConcreteTypeGenerator
+    {
+        public static T Get<T>()
+        {
+            return ConcreteTypeGenerator<T>.Get().Single();
+        }
+
+        public static IEnumerable<T> GetMany<T>()
+        {
+            return ConcreteTypeGenerator<T>.Get();
+        }
+    }
+
     public static class ConcreteTypeGenerator<T>
     {
         private static readonly IEnumerable<Func<T>> _newFuncs;

@@ -3,7 +3,7 @@
     <Description>Rrs.Types Class Library</Description>
     <Authors>Robert Snipe</Authors>
     <Copyright>Copyright (c) 2018 Robert Snipe</Copyright>
-    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.0;net40</TargetFrameworks>
     <AssemblyName>Rrs.Types</AssemblyName>
     <PackageId>Rrs.Types</PackageId>
     <PackageTags>Type;Net40</PackageTags>
