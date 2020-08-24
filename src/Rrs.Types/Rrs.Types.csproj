@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Version>1.0.0</Version>
     <Description>Rrs.Types Class Library</Description>
     <Authors>Robert Snipe</Authors>
     <Copyright>Copyright (c) 2018 Robert Snipe</Copyright>
-    <TargetFrameworks>netstandard2.0;netcoreapp2.0;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.0;net40;net461</TargetFrameworks>
     <AssemblyName>Rrs.Types</AssemblyName>
     <PackageId>Rrs.Types</PackageId>
     <PackageTags>Type;Net40</PackageTags>
     <PackageProjectUrl>https://github.com/rrs/Types</PackageProjectUrl>
-    <Version>1.0.0</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>rrs</Company>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -16,7 +16,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'netcoreapp2.0'">
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
