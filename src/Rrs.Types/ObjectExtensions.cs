@@ -14,5 +14,10 @@ namespace Rrs.Types
         {
             return PropertyCache.Get<T>();
         }
+
+        public static object GetRuntimeProperty(this object obj, string propertyName)
+        {
+            return RuntimePropertyGetter.Get(obj, propertyName);
+        }
     }
 }
